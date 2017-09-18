@@ -6,6 +6,9 @@ import io.github.ranolp.correctarrow.game.ArrowGenerator
 import io.github.ranolp.correctarrow.game.ArrowTo
 
 class StandardArrowGenerator(vararg allowedDirections: ArrowFrom) : ArrowGenerator {
+    companion object {
+        val ALLOW_ALL = StandardArrowGenerator(ArrowFrom.LEFT, ArrowFrom.RIGHT, ArrowFrom.TOP, ArrowFrom.BOTTOM)
+    }
     // for remove duplicated directions.
     private val allowed = setOf(*allowedDirections)
 
