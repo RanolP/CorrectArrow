@@ -7,5 +7,5 @@ class Board(val height: Int, val width: Int, val generator: ArrowGenerator = Sta
     val rightArrows: List<Arrow> = generator.generate(ArrowFrom.RIGHT, height)
     val topArrows: List<Arrow> = generator.generate(ArrowFrom.TOP, width)
     val bottomArrows: List<Arrow> = generator.generate(ArrowFrom.BOTTOM, width)
-    val numbers: List<List<Int>> = MutableList(width, { MutableList(height, { 0 }) })
+    val numbers: List<List<Int>> = MutableList(height, { MutableList(width, { 0 }) })
 }
