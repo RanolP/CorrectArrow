@@ -18,8 +18,8 @@ fun main(args: Array<String>) {
             Arrow(ArrowFrom.BOTTOM, ArrowTo.TOP) to '↑',
             Arrow(ArrowFrom.BOTTOM, ArrowTo.TOP_LEFT) to '↖',
             Arrow(ArrowFrom.BOTTOM, ArrowTo.TOP_RIGHT) to '↗')
-    val height = 10
-    val width = 7
+    val height = 3
+    val width = 3
     val board = Board(height, width)
     println(" ${board.topArrows.map(charMap::get).joinToString("")}")
     for (i in 0..height-1) {
