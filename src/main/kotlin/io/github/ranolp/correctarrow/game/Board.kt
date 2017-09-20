@@ -16,6 +16,12 @@ class Board(val height: Int, val width: Int, val generator: ArrowGenerator = Sta
         numbers[y][x] = value
     }
 
+    operator fun get(pos: Pos): Int = numbers[pos.y][pos.x]
+
+    operator fun set(pos: Pos, value: Int) {
+        numbers[pos.y][pos.x] = value
+    }
+
     init {
         if (height <= 0) {
             throw BoardSizeError(false, height)
