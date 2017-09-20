@@ -10,37 +10,43 @@ class Board(val height: Int, val width: Int, val generator: ArrowGenerator = Sta
     val bottomArrows: List<Arrow> = generator.generate(ArrowFrom.BOTTOM, width)
     val numbers: MutableList<MutableList<Int>> = MutableList(height, { MutableList(width, { 0 }) })
 
+    operator fun get(x: Int, y: Int): Int = numbers[y][x]
+
+    operator fun set(x: Int, y: Int, value: Int) {
+        numbers[y][x] = value
+    }
+
     init {
         if (height <= 0) {
             throw BoardSizeError(false, height)
         } else if (width <= 0) {
-            throw BoardSizeError(false, width)
+            throw BoardSizeError(true, width)
         }
         // eval numbers. sorry for my bad code :(
         // :: LEFT
         for ((index, arrow) in leftArrows.withIndex()) {
             when (arrow.to) {
                 ArrowTo.TOP_RIGHT -> {
-                    var j = index - 1
-                    for (i in 0 until width) {
-                        if (j < 0) {
+                    var y = index - 1
+                    for (x in 0 until width) {
+                        if (y < 0) {
                             break
                         }
-                        numbers[j--][i] += 1
+                        this[x, y--] += 1
                     }
                 }
                 ArrowTo.RIGHT -> {
-                    for (i in 0 until width) {
-                        numbers[index][i] += 1
+                    for (x in 0 until width) {
+                        this[x, index] += 1
                     }
                 }
                 ArrowTo.BOTTOM_RIGHT -> {
-                    var j = index + 1
-                    for (i in 0 until width) {
-                        if (j >= height) {
+                    var y = index + 1
+                    for (x in 0 until width) {
+                        if (y >= height) {
                             break
                         }
-                        numbers[j++][i] += 1
+                        this[x, y++] += 1
                     }
                 }
                 else -> {
@@ -52,26 +58,26 @@ class Board(val height: Int, val width: Int, val generator: ArrowGenerator = Sta
         for ((index, arrow) in rightArrows.withIndex()) {
             when (arrow.to) {
                 ArrowTo.TOP_LEFT -> {
-                    var j = index - 1
-                    for (i in (1..width).reversed()) {
-                        if (j < 0) {
+                    var y = index - 1
+                    for (x in width - 1 downTo 0) {
+                        if (y < 0) {
                             break
                         }
-                        numbers[j--][i-1] += 1
+                        this[x, y--] += 1
                     }
                 }
                 ArrowTo.LEFT -> {
-                    for (i in 0 until width) {
-                        numbers[index][i] += 1
+                    for (x in 0 until width) {
+                        this[x, index] += 1
                     }
                 }
                 ArrowTo.BOTTOM_LEFT -> {
-                    var j = index + 1
-                    for (i in (1..width).reversed()) {
-                        if (j >= height) {
+                    var y = index + 1
+                    for (x in width - 1 downTo 0) {
+                        if (y >= height) {
                             break
                         }
-                        numbers[j++][i-1] += 1
+                        this[x, y++] += 1
                     }
                 }
                 else -> {
@@ -83,26 +89,26 @@ class Board(val height: Int, val width: Int, val generator: ArrowGenerator = Sta
         for ((index, arrow) in topArrows.withIndex()) {
             when (arrow.to) {
                 ArrowTo.BOTTOM_LEFT -> {
-                    var j = index - 1
-                    for (i in 0 until height) {
-                        if (j < 0) {
+                    var x = index - 1
+                    for (y in 0 until height) {
+                        if (x < 0) {
                             break
                         }
-                        numbers[i][j--] += 1
+                        this[x--, y] += 1
                     }
                 }
                 ArrowTo.BOTTOM -> {
-                    for (i in 0 until height) {
-                        numbers[i][index] += 1
+                    for (y in 0 until height) {
+                        this[index, y] += 1
                     }
                 }
                 ArrowTo.BOTTOM_RIGHT -> {
-                    var j = index + 1
-                    for (i in 0 until height) {
-                        if (j >= width) {
+                    var x = index + 1
+                    for (y in 0 until height) {
+                        if (x >= width) {
                             break
                         }
-                        numbers[i][j++] += 1
+                        this[x++, y] += 1
                     }
                 }
                 else -> {
@@ -114,26 +120,26 @@ class Board(val height: Int, val width: Int, val generator: ArrowGenerator = Sta
         for ((index, arrow) in bottomArrows.withIndex()) {
             when (arrow.to) {
                 ArrowTo.TOP_LEFT -> {
-                    var j = index - 1
-                    for (i in (1..height).reversed()) {
-                        if (j < 0) {
+                    var x = index - 1
+                    for (y in height - 1 downTo 0) {
+                        if (x < 0) {
                             break
                         }
-                        numbers[i-1][j--] += 1
+                        this[x--, y] += 1
                     }
                 }
                 ArrowTo.TOP -> {
-                    for (i in 0 until height) {
-                        numbers[i][index] += 1
+                    for (y in 0 until height) {
+                        this[index, y] += 1
                     }
                 }
                 ArrowTo.TOP_RIGHT -> {
-                    var j = index + 1
-                    for (i in (1..height).reversed()) {
-                        if (j >= width) {
+                    var x = index + 1
+                    for (y in height - 1 downTo 0) {
+                        if (x >= width) {
                             break
                         }
-                        numbers[i-1][j++] += 1
+                        this[x++, y] += 1
                     }
                 }
                 else -> {
