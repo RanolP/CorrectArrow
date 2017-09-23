@@ -17,10 +17,12 @@ apply plugin: 'idea'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile 'com.github.lestard:Grid:v0.2.0'
 }
 
 compileKotlin {
