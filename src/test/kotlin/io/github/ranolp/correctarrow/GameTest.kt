@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
     val width = 3
     val board = Board(height, width)
     println(" ${board.topArrows.map(charMap::get).joinToString("")}")
-    for (i in 0..height-1) {
+    for (i in 0..height - 1) {
         println("${charMap[board.leftArrows[i]]}${board.numbers[i].joinToString("")}${charMap[board.rightArrows[i]]}")
     }
     println(" ${board.bottomArrows.map(charMap::get).joinToString("")}")

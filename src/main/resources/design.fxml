@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import eu.lestard.grid.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.ranolp.correctarrow.ui.Controller">
+    <children>
+        <Label layoutX="10.0" layoutY="10.0" prefHeight="30" prefWidth="75" text="width"/>
+        <Label layoutX="90.0" layoutY="10.0" prefHeight="30" prefWidth="75" text=":"/>
+        <Spinner fx:id="width" editable="true" initialValue="10" layoutX="105" layoutY="10.0" max="100" min="1" prefHeight="30.0"
+                 prefWidth="100"/>
+        <Label layoutX="10.0" layoutY="50.0" prefHeight="30" prefWidth="75" text="height"/>
+        <Label layoutX="90.0" layoutY="50.0" prefHeight="30" prefWidth="75" text=":"/>
+        <Spinner fx:id="height" editable="true" initialValue="10" layoutX="105" layoutY="50.0" max="100" min="1" prefHeight="30.0"
+                 prefWidth="100"/>
+        <Button fx:id="reset" layoutX="250.0" layoutY="10.0" mnemonicParsing="false" prefHeight="70" prefWidth="300"
+                text="reset board"/>
+        <GridView fx:id="leftArrow" layoutX="10.0" layoutY="164.0" prefHeight="192.0" prefWidth="64.0"/>
+        <GridView fx:id="topArrow" layoutX="74.0" layoutY="100.0" prefHeight="64.0" prefWidth="192.0"/>
+        <GridView fx:id="rightArrow" layoutX="10.0" layoutY="164.0" prefHeight="192.0" prefWidth="64.0"/>
+        <GridView fx:id="bottomArrow" layoutX="74.0" layoutY="100.0" prefHeight="64.0" prefWidth="192.0"/>
+        <GridView fx:id="numberGrid" layoutX="74.0" layoutY="164.0" prefHeight="192.0" prefWidth="192.0"/>
+    </children>
+</AnchorPane>
